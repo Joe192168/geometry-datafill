@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.29</version>
+            <version>${freemarker.version}</version>
         </dependency>
         <!--代码生成器 mapper.xml模板依赖end-->
         <!--pagehelper -->
@@ -121,7 +121,7 @@
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
+            <version>${jasypt.version}</version>
         </dependency>
         <!-- redis -->
         <dependency>

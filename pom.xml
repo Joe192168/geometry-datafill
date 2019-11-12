@@ -26,6 +26,7 @@
         <db2jcc4.version>10.1</db2jcc4.version>
         <db2jcc_license_cu.version>9.7</db2jcc_license_cu.version>
         <mybatis-plus.version>3.0.6</mybatis-plus.version>
+        <freemarker.version>2.3.29</freemarker.version>
         <pagehelper.version>1.2.3</pagehelper.version>
         <fastjson.version>1.2.38</fastjson.version>
         <disruptor.version>3.3.6</disruptor.version>
