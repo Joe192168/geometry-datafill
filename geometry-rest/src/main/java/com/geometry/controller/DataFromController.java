@@ -1,4 +1,4 @@
-package com.geometry.rest.controller;
+package com.geometry.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.geometry.pojo.vo.Message;

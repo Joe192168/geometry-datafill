@@ -1,4 +1,4 @@
-package com.geometry.rest.config;
+package com.geometry.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.geometry.rest.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.geometry.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

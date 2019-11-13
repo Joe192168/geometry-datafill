@@ -35,19 +35,21 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     useGlobalDataSourceStat: false
-
+  # 设置使用哪个环境的配置
+  # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+  #   测试环境：java -jar geometry-datafill.jar --spring.profiles.active=test
+  #   生产环境：java -jar geometry-datafill.jar --spring.profiles.active=prod
+  profiles:
+    active: dev
 
 mybatis-plus:
-  mapper-locations: classpath:*.xml
   typeAliasesPackage: com.geometry.pojo.bo
+  mapper-locations: classpath*:mappers/*.xml
   global-config:
     id-type: 2
     field-strategy: 0
     db-column-underline: true
     refresh-mapper: true
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: true
 
 #pagehelper分页插件配置
 pagehelper:
@@ -86,14 +88,6 @@ jasypt:
   cache:
     type: redis
 
-
-  # 设置使用哪个环境的配置
-  # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
-  #   测试环境：java -jar geometry-datafill.jar --spring.profiles.active=test
-  #   生产环境：java -jar geometry-datafill.jar --spring.profiles.active=prod
-  profiles:
-    active: dev
-
 ---
 # 开发环境配置(配置项只包括环境不同项)
 spring:
@@ -112,7 +106,6 @@ spring:
 
 ---
 # 测试环境配置(配置项只包括不同项)
-
 spring:
   profiles: test
   datasource:
@@ -129,7 +122,6 @@ spring:
 
 ---
 # 生产环境配置(配置项只包括不同项)
-
 spring:
   profiles: prod
   datasource:

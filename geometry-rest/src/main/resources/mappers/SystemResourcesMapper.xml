@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geometry.persistence.mapper.SystemResourcesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.geometry.pojo.bo.SystemResources">
+        <id column="id" property="id" />
+        <result column="parentid" property="parentid" />
+        <result column="resource_type_id" property="resourceTypeId" />
+        <result column="resource_name" property="resourceName" />
+        <result column="display_name" property="displayName" />
+        <result column="display_order" property="displayOrder" />
+        <result column="description" property="description" />
+        <result column="display_img" property="displayImg" />
+        <result column="resource_level" property="resourceLevel" />
+        <result column="is_inner_resource" property="isInnerResource" />
+        <result column="owner" property="owner" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="last_editor" property="lastEditor" />
+        <result column="resource_state" property="resourceState" />
+        <result column="external_app_info" property="externalAppInfo" />
+        <result column="derive_resource_id" property="deriveResourceId" />
+        <result column="content_info" property="contentInfo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parentid, resource_type_id, resource_name, display_name, display_order, description, display_img, resource_level, is_inner_resource, owner, create_time, update_time, last_editor, resource_state, external_app_info, derive_resource_id, content_info
+    </sql>
+
+</mapper>
