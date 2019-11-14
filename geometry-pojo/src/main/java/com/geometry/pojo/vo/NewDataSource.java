@@ -19,7 +19,7 @@ public class NewDataSource implements Serializable {
     private String dataPort;
     @ApiModelProperty(value = "数据源类型", name = "dataType", required = true)
     private String dataType;
-    @ApiModelProperty(value = "数据源名称", name = "dataName", required = true)
+    @ApiModelProperty(value = "数据库名称", name = "dataName", required = true)
     private String dataName;
     @ApiModelProperty(value = "数据域", name = "schemaName")
     private String schemaName;
@@ -78,5 +78,18 @@ public class NewDataSource implements Serializable {
 
     public void setSchemaName(String schemaName) {
         this.schemaName = schemaName;
+    }
+
+    @Override
+    public String toString() {
+        return "NewDataSource{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", dataIp='" + dataIp + '\'' +
+                ", dataPort='" + dataPort + '\'' +
+                ", dataType='" + dataType + '\'' +
+                ", dataName='" + dataName + '\'' +
+                ", schemaName='" + schemaName + '\'' +
+                '}';
     }
 }

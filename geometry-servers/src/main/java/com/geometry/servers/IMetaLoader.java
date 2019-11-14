@@ -2,7 +2,6 @@ package com.geometry.servers;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.geometry.pojo.utils.PageUtils;
-
 import java.util.List;
 import java.util.Map;
 
@@ -87,7 +86,7 @@ public interface IMetaLoader {
      * @param tabName
      * @return
      */
-    boolean insert(String tabName, String[] fields, String[] data);
+    boolean insert(String tabName, String[] fields, Object[] data);
 
     /**
      * 删除表数据

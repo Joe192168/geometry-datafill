@@ -14,6 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * 通过 createRestApi函数来构建一个DocketBean
+     * 函数名,可以随意命名,喜欢什么命名就什么命名
+     */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -23,12 +27,12 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
-
+    //构建 api文档的详细信息函数
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("数据填报系统api文档")
-                .description("数据填报系统")
-                .termsOfServiceUrl("http://localhost:8080/swagger-ui.html")
+                //页面标题
+                .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
+                .description("数据填报系统api文档")
                 .version("1.0")
                 .build();
     }

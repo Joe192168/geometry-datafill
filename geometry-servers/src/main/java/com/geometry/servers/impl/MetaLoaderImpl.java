@@ -1,4 +1,4 @@
-package com.geometry.impl;
+package com.geometry.servers.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,9 +16,9 @@ import java.util.*;
 @Log4j2
 public class MetaLoaderImpl implements IMetaLoader {
 
-    private NewDataSource newDataSource;
+    private final NewDataSource newDataSource;
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     /**
      * @Program: 构造方法加载数据资源实例
@@ -27,9 +27,9 @@ public class MetaLoaderImpl implements IMetaLoader {
      * @Create: 2019/10/22 15:27
      * @Version: 1.0.0
      */
-    public MetaLoaderImpl(NewDataSource _dataSource){
+    public MetaLoaderImpl(NewDataSource _dataSource) throws SQLException {
         this.newDataSource = _dataSource;
-        this.dataSource = DataSourceUtils.createDataSource(_dataSource);
+        this.dataSource = DataSourceUtils.getDataSource(_dataSource);
     }
 
     /**
@@ -53,11 +53,11 @@ public class MetaLoaderImpl implements IMetaLoader {
             map.put("falg", true);
         } catch (SQLException e) {
             map.put("falg", false);
-            map.put("msg", e.getMessage());
+            map.put("msg", e);
             log.error("getDataBaseInformations failure", e);
         } catch (Exception e) {
             map.put("falg", false);
-            map.put("msg", e.getMessage());
+            map.put("msg", e);
             log.error("getDataBaseInformations failure", e);
         } finally {
             DataSourceUtils.closeConnection(conn);
@@ -74,6 +74,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             // table type. Typical types are "TABLE", "VIEW", "SYSTEM
             // TABLE", "GLOBAL TEMPORARY", "LOCAL TEMPORARY", "ALIAS",
             // "SYNONYM".
@@ -114,6 +116,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             String[] types = {"VIEW"};
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
@@ -151,6 +155,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getSchemas();
@@ -177,6 +183,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getColumns(null, newDataSource.getSchemaName(), tableName, "%");
@@ -247,6 +255,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getIndexInfo(null, newDataSource.getSchemaName(), tableName, true, true);
@@ -303,6 +313,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getPrimaryKeys(null, newDataSource.getSchemaName(), tableName);
@@ -336,6 +348,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             //获取数据库的元数据
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getExportedKeys(null, newDataSource.getSchemaName(), tableName);
@@ -424,6 +438,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();// 取得数据库的列名
@@ -442,7 +458,7 @@ public class MetaLoaderImpl implements IMetaLoader {
                 rsList.add(rowData);
             }
         } catch (SQLException e) {
-            log.error("getQuerySQLByList failure", e.getMessage());
+            log.error("getQuerySQLByList failure", e);
         } finally {
             DataSourceUtils.colseResource(conn,stmt,rs);
         }
@@ -462,6 +478,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             ResultSetMetaData data = rs.getMetaData();
@@ -484,9 +502,9 @@ public class MetaLoaderImpl implements IMetaLoader {
                 }
             }
         } catch (SQLException e) {
-            log.error("getListColumn failure", e.getMessage());
+            log.error("getListColumn failure", e);
         } catch (Exception e) {
-            log.error("getListColumn failure", e.getMessage());
+            log.error("getListColumn failure", e);
         } finally {
             DataSourceUtils.colseResource(conn,stmt,rs);
         }
@@ -506,6 +524,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             stmt = conn.prepareStatement(sql);
             //有参数
             for (int i = 0; i < args.length; i++) {
@@ -516,7 +536,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             //返回  true
             return i > 0;
         } catch (SQLException e) {
-            log.error("executeUpdate failure", e.getMessage());
+            log.error("executeUpdate failure", e);
         } finally {
             //关闭资源
             DataSourceUtils.closeStatement(stmt);
@@ -538,6 +558,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         Connection conn = null;
         ResultSet rs = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             stmt = conn.prepareStatement(sql);
             //有可能有参数
             for (int i = 0; i < args.length; i++) {
@@ -565,7 +587,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             //返回值
             return list;
         } catch (SQLException e) {
-            log.error("executeQuery failure", e.getMessage());
+            log.error("executeQuery failure", e);
         } finally {
             //关闭资源
             DataSourceUtils.colseResource(conn,stmt,rs);
@@ -579,10 +601,12 @@ public class MetaLoaderImpl implements IMetaLoader {
      * @param fields 参数字段
      * @param data 参数字段数据
      */
-    public boolean insert(String tabName,String[] fields,String[] data) {
+    public boolean insert(String tabName,String[] fields,Object[] data) {
         PreparedStatement stmt = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             String sql = "insert into "+tabName+"(";
             int length = fields.length;
             for(int i=0;i<length;i++){
@@ -604,16 +628,17 @@ public class MetaLoaderImpl implements IMetaLoader {
             log.error("添加数据的sql:"+sql);
             //预处理SQL 防止注入
             stmt = conn.prepareStatement(sql);
+            int _datalenght = data.length;
             //注入参数
-            for(int i=0;i<length;i++){
-                stmt.setString(i+1,data[i]);
+            for(int i=0;i<_datalenght;i++){
+                stmt.setObject(i+1,data[i]);
             }
             //执行
             int i =  stmt.executeUpdate();
             //返回  true
             return i > 0;
         } catch (SQLException e) {
-            log.error("添加数据失败:",e.getMessage());
+            log.error("添加数据失败:",e);
         } finally {
             //关闭资源
             DataSourceUtils.closeStatement(stmt);
@@ -632,6 +657,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         PreparedStatement stmt = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             String sql = "delete from "+tabName+" where ";
             log.error("删除数据的sql:",sql);
             int length = fields.length;
@@ -655,7 +682,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             //返回  true
             return i > 0;
         } catch (SQLException e) {
-            log.error("删除数据失败", e.getMessage());
+            log.error("删除数据失败", e);
         } finally {
             //关闭资源
             DataSourceUtils.closeStatement(stmt);
@@ -669,6 +696,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         PreparedStatement stmt = null;
         Connection conn = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             String sql = "update "+tabName+" set ";
             log.error("修改数据的sql:",sql);
             int length = fields.length;
@@ -700,7 +729,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             //返回  true
             return i > 0;
         } catch (SQLException e) {
-            log.error("修改数据失败", e.getMessage());
+            log.error("修改数据失败", e);
         } finally {
             //关闭资源
             DataSourceUtils.closeStatement(stmt);
@@ -723,6 +752,8 @@ public class MetaLoaderImpl implements IMetaLoader {
         ResultSet rs = null;
         List<Map<String, Object>> dataList = null;
         try {
+            //获得数据库的连接
+            conn=dataSource.getConnection();
             dataList = new ArrayList<Map<String,Object>>();
             String sql = "select * from "+tabName+" where 1=1 ";
             int length = fields.length;
@@ -762,7 +793,7 @@ public class MetaLoaderImpl implements IMetaLoader {
                 dataList.add(map);
             }
         } catch (SQLException e) {
-            log.error("查询失败" , e.getMessage());
+            log.error("查询失败" , e);
         } finally {
             //关闭资源
             DataSourceUtils.colseResource(conn,stmt,rs);
@@ -778,7 +809,7 @@ public class MetaLoaderImpl implements IMetaLoader {
         List<Map<String, Object>> list = new ArrayList<>();
         int count=0;
         try {
-            //2.获得数据库的连接
+            //获得数据库的连接
             conn=dataSource.getConnection();
             //构造一个statement对象来执行sql语句：主要有Statement，PreparedStatement，CallableStatement三种实例来实现
             //获得总个数
@@ -808,7 +839,7 @@ public class MetaLoaderImpl implements IMetaLoader {
                 list.add(rowData);
             }
         }catch (Exception e){
-            log.error("查询分页：",e.getMessage());
+            log.error("查询分页：",e);
         }finally {
             //关闭资源
             DataSourceUtils.colseResource(conn,stmt,rs);

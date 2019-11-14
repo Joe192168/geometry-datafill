@@ -1,4 +1,4 @@
-package com.geometry.persistence.mapper;
+package com.geometry.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.geometry.pojo.bo.SystemResources;

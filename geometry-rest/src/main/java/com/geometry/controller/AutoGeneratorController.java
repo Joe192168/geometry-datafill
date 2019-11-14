@@ -1,6 +1,5 @@
 package com.geometry.controller;
 
-
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-@Api(tags = {"MyBatis构造器"})
+@Api(description = "MyBatis构造器",tags = {"AutoGeneratorController"})
 @RestController
 @Log4j2
 public class AutoGeneratorController {
@@ -151,7 +150,6 @@ public class AutoGeneratorController {
 
             dataFlag = true;
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("AutoGeneratorController-->> generatorMybatis",e);
             msg = e.getMessage();
         }

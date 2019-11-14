@@ -1,10 +1,9 @@
 package com.geometry.controller;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.geometry.persistence.mapper.SystemResourcesMapper;
+import com.geometry.mapper.SystemResourcesMapper;
 import com.geometry.pojo.bo.SystemResources;
 import com.geometry.pojo.vo.Message;
 import io.swagger.annotations.Api;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author xiaoqiaohui
  * @since 2019-11-13
  */
-@Api(tags = {"资源查询器"})
+@Api(description = "资源查询器",tags = {"SystemResourcesController"})
 @RestController
 @RequestMapping("/systemResources")
 public class SystemResourcesController {

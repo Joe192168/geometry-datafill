@@ -1,6 +1,6 @@
 package com.geometry.servers.impl;
 
-import com.geometry.persistence.mapper.SystemResourcesMapper;
+import com.geometry.mapper.SystemResourcesMapper;
 import com.geometry.pojo.bo.SystemResources;
 import com.geometry.servers.ISystemResourcesService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

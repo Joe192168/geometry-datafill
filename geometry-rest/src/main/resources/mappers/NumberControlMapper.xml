@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geometry.mapper.NumberControlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.geometry.pojo.bo.NumberControl">
+        <id column="id" property="id" />
+        <result column="itemcode" property="itemcode" />
+        <result column="itemname" property="itemname" />
+        <result column="numlength" property="numlength" />
+        <result column="numrule" property="numrule" />
+        <result column="autofill" property="autofill" />
+        <result column="prefixion" property="prefixion" />
+        <result column="maximum" property="maximum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, itemcode, itemname, numlength, numrule, autofill, prefixion, maximum
+    </sql>
+
+    <!-- 查询序列表自增的主键id -->
+    <select id="selectMaxmum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        SELECT maximum from t_number_control
+        where itemcode = upper(#{itemCode}) for update
+    </select>
+
+    <!-- 更新序列表最大值 -->
+    <update id="updateMaxmum" parameterType="java.lang.String">
+        update t_number_control
+        set maximum = maximum+1
+        where itemcode = upper(#{itemCode})
+    </update>
+
+</mapper>

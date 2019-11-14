@@ -2,6 +2,8 @@ package com.geometry.pojo.bo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -18,17 +20,17 @@ public class SystemResources extends Model<SystemResources> {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private BigDecimal id;
 
-    private String parentid;
+    private BigDecimal parentid;
 
-    private String resourceTypeId;
+    private BigDecimal resourceTypeId;
 
     private String resourceName;
 
     private String displayName;
 
-    private String displayOrder;
+    private BigDecimal displayOrder;
 
     private String description;
 
@@ -36,45 +38,48 @@ public class SystemResources extends Model<SystemResources> {
 
     private String resourceLevel;
 
-    private String isInnerResource;
+    private BigDecimal isInnerResource;
 
-    private String owner;
+    private BigDecimal owner;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private String lastEditor;
+    private BigDecimal lastEditor;
 
-    private String resourceState;
+    private BigDecimal resourceState;
 
     private String externalAppInfo;
 
-    private String deriveResourceId;
+    private BigDecimal deriveResourceId;
 
     private String contentInfo;
 
-    public String getId() {
+    public BigDecimal getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigDecimal id) {
         this.id = id;
     }
-    public String getParentid() {
+
+    public BigDecimal getParentid() {
         return parentid;
     }
 
-    public void setParentid(String parentid) {
+    public void setParentid(BigDecimal parentid) {
         this.parentid = parentid;
     }
-    public String getResourceTypeId() {
+
+    public BigDecimal getResourceTypeId() {
         return resourceTypeId;
     }
 
-    public void setResourceTypeId(String resourceTypeId) {
+    public void setResourceTypeId(BigDecimal resourceTypeId) {
         this.resourceTypeId = resourceTypeId;
     }
+
     public String getResourceName() {
         return resourceName;
     }
@@ -82,6 +87,7 @@ public class SystemResources extends Model<SystemResources> {
     public void setResourceName(String resourceName) {
         this.resourceName = resourceName;
     }
+
     public String getDisplayName() {
         return displayName;
     }
@@ -89,13 +95,15 @@ public class SystemResources extends Model<SystemResources> {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-    public String getDisplayOrder() {
+
+    public BigDecimal getDisplayOrder() {
         return displayOrder;
     }
 
-    public void setDisplayOrder(String displayOrder) {
+    public void setDisplayOrder(BigDecimal displayOrder) {
         this.displayOrder = displayOrder;
     }
+
     public String getDescription() {
         return description;
     }
@@ -103,6 +111,7 @@ public class SystemResources extends Model<SystemResources> {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getDisplayImg() {
         return displayImg;
     }
@@ -110,6 +119,7 @@ public class SystemResources extends Model<SystemResources> {
     public void setDisplayImg(String displayImg) {
         this.displayImg = displayImg;
     }
+
     public String getResourceLevel() {
         return resourceLevel;
     }
@@ -117,20 +127,23 @@ public class SystemResources extends Model<SystemResources> {
     public void setResourceLevel(String resourceLevel) {
         this.resourceLevel = resourceLevel;
     }
-    public String getIsInnerResource() {
+
+    public BigDecimal getIsInnerResource() {
         return isInnerResource;
     }
 
-    public void setIsInnerResource(String isInnerResource) {
+    public void setIsInnerResource(BigDecimal isInnerResource) {
         this.isInnerResource = isInnerResource;
     }
-    public String getOwner() {
+
+    public BigDecimal getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(BigDecimal owner) {
         this.owner = owner;
     }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -138,6 +151,7 @@ public class SystemResources extends Model<SystemResources> {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -145,20 +159,23 @@ public class SystemResources extends Model<SystemResources> {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    public String getLastEditor() {
+
+    public BigDecimal getLastEditor() {
         return lastEditor;
     }
 
-    public void setLastEditor(String lastEditor) {
+    public void setLastEditor(BigDecimal lastEditor) {
         this.lastEditor = lastEditor;
     }
-    public String getResourceState() {
+
+    public BigDecimal getResourceState() {
         return resourceState;
     }
 
-    public void setResourceState(String resourceState) {
+    public void setResourceState(BigDecimal resourceState) {
         this.resourceState = resourceState;
     }
+
     public String getExternalAppInfo() {
         return externalAppInfo;
     }
@@ -166,13 +183,15 @@ public class SystemResources extends Model<SystemResources> {
     public void setExternalAppInfo(String externalAppInfo) {
         this.externalAppInfo = externalAppInfo;
     }
-    public String getDeriveResourceId() {
+
+    public BigDecimal getDeriveResourceId() {
         return deriveResourceId;
     }
 
-    public void setDeriveResourceId(String deriveResourceId) {
+    public void setDeriveResourceId(BigDecimal deriveResourceId) {
         this.deriveResourceId = deriveResourceId;
     }
+
     public String getContentInfo() {
         return contentInfo;
     }
@@ -182,31 +201,26 @@ public class SystemResources extends Model<SystemResources> {
     }
 
     @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
-
-    @Override
     public String toString() {
         return "SystemResources{" +
-        "id=" + id +
-        ", parentid=" + parentid +
-        ", resourceTypeId=" + resourceTypeId +
-        ", resourceName=" + resourceName +
-        ", displayName=" + displayName +
-        ", displayOrder=" + displayOrder +
-        ", description=" + description +
-        ", displayImg=" + displayImg +
-        ", resourceLevel=" + resourceLevel +
-        ", isInnerResource=" + isInnerResource +
-        ", owner=" + owner +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", lastEditor=" + lastEditor +
-        ", resourceState=" + resourceState +
-        ", externalAppInfo=" + externalAppInfo +
-        ", deriveResourceId=" + deriveResourceId +
-        ", contentInfo=" + contentInfo +
-        "}";
+                "id=" + id +
+                ", parentid=" + parentid +
+                ", resourceTypeId=" + resourceTypeId +
+                ", resourceName='" + resourceName + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", displayOrder='" + displayOrder + '\'' +
+                ", description='" + description + '\'' +
+                ", displayImg='" + displayImg + '\'' +
+                ", resourceLevel='" + resourceLevel + '\'' +
+                ", isInnerResource=" + isInnerResource +
+                ", owner=" + owner +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", lastEditor=" + lastEditor +
+                ", resourceState=" + resourceState +
+                ", externalAppInfo='" + externalAppInfo + '\'' +
+                ", deriveResourceId=" + deriveResourceId +
+                ", contentInfo='" + contentInfo + '\'' +
+                '}';
     }
 }

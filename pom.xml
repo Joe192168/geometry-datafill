@@ -33,11 +33,11 @@
         <log4jdbc.version>1.2</log4jdbc.version>
         <swagger2.version>2.9.2</swagger2.version>
         <jasypt.version>2.0.0</jasypt.version>
+        <jackson.version>2.10.1</jackson.version>
         <velocity-engine-core.version>2.1</velocity-engine-core.version>
     </properties>
 
     <modules>
-        <module>geometry-persistence</module>
         <module>geometry-pojo</module>
         <module>geometry-rest</module>
         <module>geometry-servers</module>
